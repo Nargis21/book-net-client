@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }: IProps) => {
         return <Loading></Loading>
     }
 
-    if (!user.email && !isLoading) {
+    if (!user.email && !isLoading && !localStorage.getItem('accessToken')) {
         return <Navigate to='/login' state={{ from: location }} replace></Navigate>
     }
 
