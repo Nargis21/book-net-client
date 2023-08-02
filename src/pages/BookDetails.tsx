@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import { useAddCommentMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
+import { useSingleBookQuery } from '../redux/features/book/bookApi';
 import Loading from "../utils/Loading";
 import { Link, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import Review from '../components/Review';
 import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { setDeleteConfirm } from '../redux/features/book/bookSlice';
@@ -18,7 +16,6 @@ const BookDetails = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-
     const { _id, title, author, genre, image, publicationDate, reviews, owner } = books?.data;
 
 
