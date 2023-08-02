@@ -8,9 +8,8 @@ import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { setDeleteConfirm } from '../redux/features/book/bookSlice';
 import DeleteBookModal from '../components/DeleteBookModal';
 
-
-
 const BookDetails = () => {
+    const { user } = useAppSelector(state => state.user)
     const { deleteConfirm } = useAppSelector((state) => state.book)
     const dispatch = useAppDispatch()
     const { id } = useParams()
@@ -20,7 +19,7 @@ const BookDetails = () => {
         return <Loading></Loading>
     }
 
-    const { _id, title, author, genre, image, publicationDate, reviews } = books?.data;
+    const { _id, title, author, genre, image, publicationDate, reviews, owner } = books?.data;
 
 
     return (
@@ -36,14 +35,16 @@ const BookDetails = () => {
                         <h1 className=' text-xl font-bold mb-3'>{genre}</h1>
                         <h1 className=' font-bold text-gray-600'>Publication Date: </h1>
                         <h1 className=' text-xl font-bold mb-3'>{publicationDate}</h1>
-                        <div>
-                            <Link to={`/bookEdit/${_id}`}>
-                                <button className="btn btn-sm btn-primary">Edit</button>
-                            </Link>
-                            <label onClick={() => dispatch(setDeleteConfirm(_id))} className='btn btn-sm bg-red-300' for="delete-book-modal">
-                                Delete
-                            </label>
-                        </div>
+                        {
+                            user.email === owner && <div>
+                                <Link to={`/bookEdit/${_id}`}>
+                                    <button className="btn btn-sm btn-primary mr-2" disabled={user.email !== owner}>Edit</button>
+                                </Link>
+                                <label onClick={() => dispatch(setDeleteConfirm(_id))} className='btn btn-sm bg-red-300 ' for="delete-book-modal">
+                                    Delete
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
                 <Review id={id} reviews={reviews}></Review>
