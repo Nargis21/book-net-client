@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAddCommentMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
 import Loading from "../utils/Loading";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Review from '../components/Review';
 
@@ -15,7 +15,7 @@ const BookDetails = () => {
         return <Loading></Loading>
     }
 
-    const { title, author, genre, image, publicationDate, reviews } = books?.data;
+    const { _id, title, author, genre, image, publicationDate, reviews } = books?.data;
 
 
 
@@ -32,6 +32,11 @@ const BookDetails = () => {
                         <h1 className=' text-xl font-bold mb-3'>{genre}</h1>
                         <h1 className=' font-bold text-gray-600'>Publication Date: </h1>
                         <h1 className=' text-xl font-bold mb-3'>{publicationDate}</h1>
+                        <div>
+                            <Link to={`/bookEdit/${_id}`}>
+                                <button className="btn btn-sm btn-primary">Edit</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <Review id={id} reviews={reviews}></Review>
