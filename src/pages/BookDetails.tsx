@@ -1,17 +1,23 @@
-import React from 'react';
-import { useSingleBookQuery } from '../redux/features/book/bookApi';
+import React, { useEffect } from 'react';
+import { useAddCommentMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
 import Loading from "../utils/Loading";
 import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import Review from '../components/Review';
+
+
 
 const BookDetails = () => {
     const { id } = useParams()
-    const { data, isLoading } = useSingleBookQuery(id);
+    const { data: books, isLoading } = useSingleBookQuery(id, { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
 
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(data);
-    const { title, author, genre, image, publicationDate } = data?.data;
+
+    const { title, author, genre, image, publicationDate, reviews } = books?.data;
+
+
 
     return (
         <div className='flex flex-col justify-center items-center '>
@@ -28,9 +34,7 @@ const BookDetails = () => {
                         <h1 className=' text-xl font-bold mb-3'>{publicationDate}</h1>
                     </div>
                 </div>
-                <div>
-
-                </div>
+                <Review id={id} reviews={reviews}></Review>
             </div>
         </div>
     );

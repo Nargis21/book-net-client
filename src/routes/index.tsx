@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/bookDetails/:id',
-                element: <PrivateRoute><BookDetails></BookDetails></PrivateRoute>
+                element: <BookDetails></BookDetails>
             },
             {
                 path: '/signup',
