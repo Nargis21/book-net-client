@@ -4,10 +4,15 @@ import Loading from "../utils/Loading";
 import { Link, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Review from '../components/Review';
+import { useAppDispatch, useAppSelector } from '../redux/hook';
+import { setDeleteConfirm } from '../redux/features/book/bookSlice';
+import DeleteBookModal from '../components/DeleteBookModal';
 
 
 
 const BookDetails = () => {
+    const { deleteConfirm } = useAppSelector((state) => state.book)
+    const dispatch = useAppDispatch()
     const { id } = useParams()
     const { data: books, isLoading } = useSingleBookQuery(id, { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
 
@@ -16,7 +21,6 @@ const BookDetails = () => {
     }
 
     const { _id, title, author, genre, image, publicationDate, reviews } = books?.data;
-
 
 
     return (
@@ -36,11 +40,17 @@ const BookDetails = () => {
                             <Link to={`/bookEdit/${_id}`}>
                                 <button className="btn btn-sm btn-primary">Edit</button>
                             </Link>
+                            <label onClick={() => dispatch(setDeleteConfirm(_id))} className='btn btn-sm bg-red-300' for="delete-book-modal">
+                                Delete
+                            </label>
                         </div>
                     </div>
                 </div>
                 <Review id={id} reviews={reviews}></Review>
             </div>
+            {
+                deleteConfirm && <DeleteBookModal></DeleteBookModal>
+            }
         </div>
     );
 };

@@ -16,7 +16,7 @@ interface AddBookInputs {
 
 const AddBook = () => {
   const { user } = useAppSelector(state => state.user)
-  const [addBook, { isSuccess, data }] = useAddBookMutation()
+  const [addBook, { data }] = useAddBookMutation()
 
   const {
     register,
