@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/images/logo.png'
-import { useEffect, useState } from 'react'
-import '../styles/navbar.css'
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { signOut } from "firebase/auth";
 import { setUser } from "../redux/features/user/userSlice";
@@ -19,23 +17,8 @@ const Navbar = () => {
         })
     }
 
-    const [navbarBgBlur, setNavbarBgBlur] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const isScrolled = window.scrollY > 0;
-            setNavbarBgBlur(isScrolled);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-
     return (
-        <div className={`navbar ${navbarBgBlur ? 'bg-blur' : 'bg-base-100'} lg:px-6 md:px-4 sm:px-2 sticky top-0`}
+        <div className="navbar bg-base-100 lg:px-6 md:px-4 sm:px-2 shadow-lg"
         >
             <div className="navbar-start ">
                 <div className="dropdown">
