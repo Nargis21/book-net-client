@@ -14,34 +14,22 @@ const BookDetails = () => {
     const { title, author, genre, image, publicationDate } = data?.data;
 
     return (
-        <div className=' lg:mx-48 lg:my-12 '>
-            <div className="card lg:card-side bg-base-100 shadow-xl">
-                <figure><img className='lg:h-96' src={image} alt="Album" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title text-rose-900 font-serif text-2xl ">{title}</h2>
-                    <h3 className='text-xl font-bold'>Author: <span className='font-normal'>{author}</span></h3>
-                    <h3 className='text-xl font-bold'>Genre: <span className='font-normal'>{genre}</span></h3>
-                    <h3 className='text-xl font-bold'>Publication Date: <span className='font-normal'>{publicationDate}</span></h3>
+        <div className='flex flex-col justify-center items-center '>
+            <div className='lg:my-16 shadow-xl p-10 rounded-xl'>
+                <div className="flex flex-col lg:flex-row gap-10 bg-base-100 ">
+                    <figure><img className='h-80' src={image} alt="Album" /></figure>
+                    <div className="">
+                        <h2 className="card-title text-rose-900 font-serif text-4xl mb-6 ">{title}</h2>
+                        <h1 className=' font-bold text-gray-600'>Author: </h1>
+                        <h1 className=' text-xl font-bold mb-3'>{author}</h1>
+                        <h1 className=' font-bold text-gray-600'>Genre: </h1>
+                        <h1 className=' text-xl font-bold mb-3'>{genre}</h1>
+                        <h1 className=' font-bold text-gray-600'>Publication Date: </h1>
+                        <h1 className=' text-xl font-bold mb-3'>{publicationDate}</h1>
+                    </div>
+                </div>
+                <div>
 
-                    {/* <form onSubmit={handleOrder}>
-                        <label class="label">
-                            <p class="label-text font-bold">Phone</p>
-                        </label>
-                        <input required type="text" name='phone' placeholder="Phone" class="input w-full input-warning max-w-xs" />
-                        <label class="label">
-                            <p class="label-text font-bold">Address</p>
-                        </label>
-                        <input required type="text" name='address' placeholder="Address" class="input w-full input-warning max-w-xs" />
-                        <label class="label">
-                            <p class="label-text font-bold">Set Order Quantity</p>
-                        </label>
-                        <input type="text" name='quantity' value={orderQuantity} placeholder="Type here" class="input w-24 input-warning max-w-xs" />
-                        <p disabled={orderQuantity >= tool?.availableQuantity} onClick={handleIncrease} class="btn btn-sm btn-accent mx-3">Increase</p>
-                        <p disabled={orderQuantity <= tool?.minimumOrderQuantity} onClick={handleDecrease} class="btn btn-sm btn-accent">Decrease</p>
-                        <div class="card-actions justify-end mt-12">
-                            <button type="submit" className='btn btn-secondary'>Place Order</button>
-                        </div>
-                    </form> */}
                 </div>
             </div>
         </div>
