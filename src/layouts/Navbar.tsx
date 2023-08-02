@@ -50,6 +50,7 @@ const Navbar = () => {
                         user.email && (
                             <>
                                 <li><Link to='/add-new-book'>Add New Book</Link></li>
+                                <li><Link to='/wishlist'>Wishlist</Link></li>
                                 <li onClick={handleLogout} className="cursor-pointer mt-2">Logout</li>
                             </>
 

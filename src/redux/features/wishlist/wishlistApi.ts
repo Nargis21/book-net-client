@@ -8,7 +8,7 @@ const wishlistApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["book"],
+      invalidatesTags: ["wishlist"],
     }),
     // addComment: builder.mutation({
     //   query: ({ id, data }) => ({
@@ -33,10 +33,10 @@ const wishlistApi = api.injectEndpoints({
     //   }),
     //   invalidatesTags: ["book"],
     // }),
-    // getBooks: builder.query({
-    //   query: () => "/books",
-    //   providesTags: ["book"],
-    // }),
+    getWishlist: builder.query({
+      query: () => "/wishlist",
+      providesTags: ["wishlist"],
+    }),
     // singleBook: builder.query({
     //   query: (id) => `/books/${id}`,
     //   providesTags: ["book"],
@@ -46,6 +46,7 @@ const wishlistApi = api.injectEndpoints({
 
 export const {
   useAddWishlistMutation,
+  useGetWishlistQuery,
   //   useGetBooksQuery,
   //   useSingleBookQuery,
   //   useAddCommentMutation,

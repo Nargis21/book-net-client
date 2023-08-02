@@ -37,7 +37,7 @@ const BookCard = ({ book }) => {
                     <h2 className="card-title text-rose-900 font-bold uppercase">{title}</h2>
                     <div className="flex justify-between items-center">
                         <p className="text-sm">By <span className="text-blue-700 font-semibold text-xl"> {author}</span></p>
-                        <p className="text-center bg-gray-300 p-1 rounded-full">{genre}</p>
+                        <p className="text-center bg-rose-200 p-1 rounded-full">{genre}</p>
                     </div>
                     <div className="card-actions justify-between items-center text-sm text-gray-600 font-semibold ">
                         <p>Published at {publicationDate}</p>
@@ -46,7 +46,7 @@ const BookCard = ({ book }) => {
                         </Link>
                     </div>
                     <div>
-                        <button onClick={handleWishlist} className='btn btn-primary btn-sm '>
+                        <button onClick={handleWishlist} className='btn btn-primary btn-sm' disabled={!user.email}>
                             Add To Wishlist
                         </button>
                     </div>
