@@ -10,14 +10,13 @@ const currentListApi = api.injectEndpoints({
       }),
       invalidatesTags: ["currentList"],
     }),
-    // addComment: builder.mutation({
-    //   query: ({ id, data }) => ({
-    //     url: `books/add-review/${id}`,
-    //     method: "PATCH",
-    //     body: data,
-    //   }),
-    //   invalidatesTags: ["book"],
-    // }),
+    updateStatus: builder.mutation({
+      query: ({ id }) => ({
+        url: `currentList/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["currentList"],
+    }),
     // editBook: builder.mutation({
     //   query: ({ id, data }) => ({
     //     url: `books/${id}`,
@@ -48,6 +47,7 @@ export const {
   useAddCurrentListMutation,
   useGetCurrentListQuery,
   useDeleteCurrentListMutation,
+  useUpdateStatusMutation,
   //   useGetBooksQuery,
   //   useSingleBookQuery,
   //   useAddCommentMutation,

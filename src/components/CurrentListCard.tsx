@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
-import { useDeleteCurrentListMutation } from "../redux/features/currentList/currentListApi";
+import { useDeleteCurrentListMutation, useUpdateStatusMutation } from "../redux/features/currentList/currentListApi";
 
 const WishlistCard = ({ currentList }) => {
     const { _id, title, author, genre, image, publicationDate } = currentList?.book;
-    const id = currentList._id
-    const { user } = useAppSelector(state => state.user)
-    const [deleteCurrentList, { data }] = useDeleteCurrentListMutation()
 
+    const { user } = useAppSelector(state => state.user)
+    const [deleteCurrentList,] = useDeleteCurrentListMutation()
+    const [updateStatus,] = useUpdateStatusMutation()
+    const options = {
+        id: currentList._id
+    }
     const handleDeleteCurrentList = () => {
-        const options = {
-            id: id
-        }
         deleteCurrentList(options)
+    }
+    const handleUpdateStatus = () => {
+        updateStatus(options)
     }
 
 
@@ -34,10 +37,15 @@ const WishlistCard = ({ currentList }) => {
                             <button className="btn capitalize btn-link">View Details</button>
                         </Link>
                     </div>
-                    <div>
+                    <div className="flex gap-2 items-center">
                         <button onClick={handleDeleteCurrentList} className='btn btn-primary btn-sm' disabled={!user.email}>
                             Remove
                         </button>
+                        {
+                            !currentList.isComplete ? <button onClick={handleUpdateStatus} className='btn btn-primary btn-sm' disabled={!user.email}>
+                                Mark as completed
+                            </button> : <p className="font-bold">You have completed this book</p>
+                        }
                     </div>
                 </div>
             </div>
