@@ -28,14 +28,14 @@ const currentListApi = api.injectEndpoints({
     // }),
     deleteWishlist: builder.mutation({
       query: ({ id }) => ({
-        url: `/wishlist/${id}`,
+        url: `/currentList/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["wishlist"],
+      invalidatesTags: ["currentList"],
     }),
-    getWishlist: builder.query({
-      query: () => "/wishlist",
-      providesTags: ["wishlist"],
+    getCurrentList: builder.query({
+      query: () => "/currentList",
+      providesTags: ["currentList"],
     }),
     // singleBook: builder.query({
     //   query: (id) => `/books/${id}`,
@@ -46,7 +46,7 @@ const currentListApi = api.injectEndpoints({
 
 export const {
   useAddCurrentListMutation,
-  useGetWishlistQuery,
+  useGetCurrentListQuery,
   useDeleteWishlistMutation,
   //   useGetBooksQuery,
   //   useSingleBookQuery,

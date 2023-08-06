@@ -51,6 +51,7 @@ const Navbar = () => {
                             <>
                                 <li><Link to='/add-new-book'>Add New Book</Link></li>
                                 <li><Link to='/wishlist'>Wishlist</Link></li>
+                                <li><Link to='/currentList'>Current List</Link></li>
                                 <li onClick={handleLogout} className="cursor-pointer mt-2">Logout</li>
                             </>
 
