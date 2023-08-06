@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
-import { useDeleteWishlistMutation } from '../redux/features/wishlist/wishlistApi';
+import { useDeleteCurrentListMutation } from "../redux/features/currentList/currentListApi";
 
 const WishlistCard = ({ currentList }) => {
     const { _id, title, author, genre, image, publicationDate } = currentList?.book;
     const id = currentList._id
     const { user } = useAppSelector(state => state.user)
-    const [deleteWishlist, { data }] = useDeleteWishlistMutation()
+    const [deleteCurrentList, { data }] = useDeleteCurrentListMutation()
 
-    const handleDeleteWishlist = () => {
+    const handleDeleteCurrentList = () => {
         const options = {
             id: id
         }
-        deleteWishlist(options)
+        deleteCurrentList(options)
     }
 
 
@@ -35,7 +35,7 @@ const WishlistCard = ({ currentList }) => {
                         </Link>
                     </div>
                     <div>
-                        <button onClick={handleDeleteWishlist} className='btn btn-primary btn-sm' disabled={!user.email}>
+                        <button onClick={handleDeleteCurrentList} className='btn btn-primary btn-sm' disabled={!user.email}>
                             Remove
                         </button>
                     </div>
