@@ -3,28 +3,36 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useAddWishlistMutation } from "../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
+import { useAddCurrentListMutation } from '../redux/features/currentList/currentListApi';
 
 const BookCard = ({ book }) => {
 
     const { _id, title, author, genre, image, publicationDate } = book;
     const { user } = useAppSelector(state => state.user)
-    const [addWishlist, { data }] = useAddWishlistMutation()
+    const [addWishlist, { data: wishlistData }] = useAddWishlistMutation()
+    const [addCurrentList, { data: currentListData }] = useAddCurrentListMutation()
 
-    const handleWishlist = () => {
-        const options = {
-            data: {
-                email: user.email,
-                book: _id
-            }
+    const options = {
+        data: {
+            email: user.email,
+            book: _id
         }
+    }
+    const handleWishlist = () => {
         addWishlist(options)
+    }
+    const handleCurrentList = () => {
+        addCurrentList(options)
     }
 
     useEffect(() => {
-        if (data?.success) {
+        if (wishlistData?.success) {
             toast.success(`Added to wishlist`);
         }
-    }, [data])
+        if (currentListData?.success) {
+            toast.success(`Added to current list`);
+        }
+    }, [wishlistData, currentListData])
 
 
     return (
@@ -45,9 +53,12 @@ const BookCard = ({ book }) => {
                             <button className="btn capitalize btn-link">View Details</button>
                         </Link>
                     </div>
-                    <div>
+                    <div className='flex gap-2'>
                         <button onClick={handleWishlist} className='btn btn-primary btn-sm' disabled={!user.email}>
                             Add To Wishlist
+                        </button>
+                        <button onClick={handleCurrentList} className='btn btn-primary btn-sm' disabled={!user.email}>
+                            Add To Current List
                         </button>
                     </div>
                 </div>
