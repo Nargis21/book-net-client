@@ -26,13 +26,13 @@ const wishlistApi = api.injectEndpoints({
     //   }),
     //   invalidatesTags: ["book"],
     // }),
-    // deleteBook: builder.mutation({
-    //   query: ({ id }) => ({
-    //     url: `books/${id}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["book"],
-    // }),
+    deleteWishlist: builder.mutation({
+      query: ({ id }) => ({
+        url: `/wishlist/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["wishlist"],
+    }),
     getWishlist: builder.query({
       query: () => "/wishlist",
       providesTags: ["wishlist"],
@@ -47,6 +47,7 @@ const wishlistApi = api.injectEndpoints({
 export const {
   useAddWishlistMutation,
   useGetWishlistQuery,
+  useDeleteWishlistMutation,
   //   useGetBooksQuery,
   //   useSingleBookQuery,
   //   useAddCommentMutation,
