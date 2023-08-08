@@ -25,9 +25,9 @@ const WishlistCard = ({ wishlist }) => {
                     <figure><img src={image} alt="Book Image" className="cover h-80 mt-12" /></figure>
                 </div>
                 <div className="card-body">
-                    <h2 className="card-title text-rose-900 font-bold uppercase">{title}</h2>
+                    <h2 className="card-title text-blue-900 font-bold uppercase">{title}</h2>
                     <div className="flex justify-between items-center">
-                        <p className="text-sm">By <span className="text-blue-700 font-semibold text-xl"> {author}</span></p>
+                        <p>By <span className=" font-bold"> {author}</span></p>
                         <p className="text-center bg-rose-200 p-1 rounded-full">{genre}</p>
                     </div>
                     <div className="card-actions justify-between items-center text-sm text-gray-600 font-semibold ">

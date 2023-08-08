@@ -58,7 +58,7 @@ const SignUp = () => {
     // }
 
     return (
-        <div className="flex lg:h-screen justify-center items-center">
+        <div className="flex lg:h-screen justify-center items-center bg-gray-200">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body items-center ">
                     <h2 className="card-title text-2xl">Sign Up</h2>

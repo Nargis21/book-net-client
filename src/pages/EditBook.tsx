@@ -54,8 +54,8 @@ const EditBook = () => {
 
 
     return (
-        <div className=' flex justify-center items-center'>
-            <div className="lg:w-[50%] text-center shadow-xl rounded-lg p-10">
+        <div className=' flex justify-center items-center bg-gray-200 py-10'>
+            <div className="lg:w-[50%] text-center shadow-xl rounded-lg p-10 bg-base-100">
                 <h2 className=" text-2xl font-bold mb-4">Edit Book</h2>
 
                 <form className="w-full" onSubmit={handleSubmit(onSubmit)}>

@@ -20,8 +20,8 @@ const BookDetails = () => {
 
 
     return (
-        <div className='flex flex-col justify-center items-center '>
-            <div className='lg:my-16 shadow-xl p-10 rounded-xl'>
+        <div className='flex flex-col justify-center items-center bg-gray-200 py-10'>
+            <div className=' shadow-xl p-10 rounded-xl bg-base-100'>
                 <div className="flex flex-col lg:flex-row gap-10 bg-base-100 ">
                     <figure><img className='h-80' src={image} alt="Album" /></figure>
                     <div className="">

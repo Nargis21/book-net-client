@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/logo3.png'
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { signOut } from "firebase/auth";
 import { setUser } from "../redux/features/user/userSlice";
@@ -18,7 +18,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 lg:px-6 md:px-4 sm:px-2 shadow-lg"
+        <div className="navbar bg-base-100 lg:px-6 md:px-4 sm:px-2 shadow-lg sticky top-0 z-10"
         >
             <div className="navbar-start ">
                 <div className="dropdown">
@@ -31,7 +31,7 @@ const Navbar = () => {
                 </div>
                 <Link to='/' className=" hidden lg:flex">
                     <div className="flex items-center">
-                        <img src={logo} alt="Logo" className="w-[50px]" />
+                        <img src={logo} alt="Logo" className="w-[50px] mr-2" />
                         <h1 className="normal-case text-2xl font-thin"> <span className="font-bold">Book</span> Net</h1>
                     </div>
                 </Link>
