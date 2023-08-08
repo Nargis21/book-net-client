@@ -5,7 +5,7 @@ import { useAppSelector } from '../redux/hook';
 import { toast } from "react-toastify";
 
 
-interface AddBookInputs {
+export interface AddBookInputs {
   title: string;
   author: string;
   genre: string;
