@@ -37,6 +37,10 @@ const bookApi = api.injectEndpoints({
       query: () => "/books",
       providesTags: ["book"],
     }),
+    getTopTen: builder.query({
+      query: () => "/books/get-top-ten",
+      providesTags: ["book"],
+    }),
     singleBook: builder.query({
       query: (id) => `/books/${id}`,
       providesTags: ["book"],
@@ -47,6 +51,7 @@ const bookApi = api.injectEndpoints({
 export const {
   useAddBookMutation,
   useGetBooksQuery,
+  useGetTopTenQuery,
   useSingleBookQuery,
   useAddCommentMutation,
   useEditBookMutation,
