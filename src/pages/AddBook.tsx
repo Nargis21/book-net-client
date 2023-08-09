@@ -26,15 +26,13 @@ const AddBook = () => {
   } = useForm();
 
   const onSubmit = (data: AddBookInputs) => {
-    console.log(data);
     const options = {
       data: { title: data.title, author: data.author, genre: data.genre, publicationDate: data.publicationDate, image: data.image, owner: user.email },
     };
     addBook(options);
 
   };
-  // console.log(isSuccess);
-  // console.log(data);
+
   useEffect(() => {
     if (data?.success) {
       reset();

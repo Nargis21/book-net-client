@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useDeleteCurrentListMutation, useUpdateStatusMutation } from "../redux/features/currentList/currentListApi";
 
-const WishlistCard = ({ currentList }) => {
+const CurrentListCard = ({ currentList }) => {
     const { _id, title, author, genre, image, publicationDate } = currentList?.book;
-
+    const id = currentList?._id
     const { user } = useAppSelector(state => state.user)
     const [deleteCurrentList,] = useDeleteCurrentListMutation()
     const [updateStatus,] = useUpdateStatusMutation()
     const options = {
-        id: currentList._id
+        id: id
     }
     const handleDeleteCurrentList = () => {
         deleteCurrentList(options)
@@ -53,4 +53,4 @@ const WishlistCard = ({ currentList }) => {
     );
 };
 
-export default WishlistCard;
+export default CurrentListCard;

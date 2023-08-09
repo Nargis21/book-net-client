@@ -8,7 +8,6 @@ const FeaturedBook = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(data);
     return (
         <div>
             <h1 className='py-10 text-center text-5xl bg-gray-300'>Featured Books</h1>

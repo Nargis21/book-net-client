@@ -13,7 +13,6 @@ const Books = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(books);
 
     // Search books by title or author
     const searchedBooks = books?.data?.filter((book: AddBookInputs) => {

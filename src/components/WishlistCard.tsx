@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
-import { toast } from "react-toastify";
 import { useDeleteWishlistMutation } from '../redux/features/wishlist/wishlistApi';
 
 const WishlistCard = ({ wishlist }) => {
     const { _id, title, author, genre, image, publicationDate } = wishlist?.book;
-    const id = wishlist._id
+    const id = wishlist?._id
     const { user } = useAppSelector(state => state.user)
-    const [deleteWishlist, { data }] = useDeleteWishlistMutation()
+    const [deleteWishlist] = useDeleteWishlistMutation()
 
     const handleDeleteWishlist = () => {
         const options = {

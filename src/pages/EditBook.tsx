@@ -35,7 +35,6 @@ const EditBook = () => {
     } = useForm();
 
     const onSubmit = (data: AddBookInputs) => {
-        console.log(data);
         const options = {
             id: id,
             data: { title: data.title, author: data.author, genre: data.genre, publicationDate: data.publicationDate, image: data.image, owner: user.email },
@@ -43,8 +42,7 @@ const EditBook = () => {
         editBook(options);
 
     };
-    // console.log(isSuccess);
-    // console.log(data);
+
     useEffect(() => {
         if (data?.success) {
             toast.success(`Book updated successfully!`);

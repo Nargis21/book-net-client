@@ -36,10 +36,6 @@ const SignUp = () => {
 
     };
 
-
-    // console.log(isSuccess);
-    // console.log(data);
-
     useEffect(() => {
         if (user.email && !isLoading && data?.success) {
             const accessToken = data?.data?.accessToken

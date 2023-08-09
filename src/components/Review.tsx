@@ -18,7 +18,6 @@ const Review = ({ id, reviews }) => {
     } = useForm();
 
     const onSubmit = (data: AddCommentInput) => {
-        console.log(data);
         const options = {
             id: id,
             data: { comment: data.comment },
