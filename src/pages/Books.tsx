@@ -15,14 +15,17 @@ const Books = () => {
     }
 
     // Search books by title or author
-    const searchedBooks = books?.data?.filter((book: AddBookInputs) => {
+    const searchedBooks: AddBookInputs[] = books?.data?.filter((book: AddBookInputs) => {
         const titleMatch = book.title
             .toLowerCase()
             .includes(searchTerm.toLowerCase());
         const authorMatch = book.author
             .toLowerCase()
             .includes(searchTerm.toLowerCase());
-        return titleMatch || authorMatch;
+        const genreMatch = book.genre
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
+        return titleMatch || authorMatch || genreMatch;
     });
 
     // Extract unique genres from the book data
