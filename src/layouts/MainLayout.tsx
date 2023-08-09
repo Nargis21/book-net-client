@@ -11,7 +11,7 @@ const MainLayout = () => {
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
-            <ToastContainer></ToastContainer>
+            <ToastContainer position="bottom-right"></ToastContainer>
         </div>
     );
 };
