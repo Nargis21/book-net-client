@@ -1,17 +1,43 @@
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAddBookMutation } from '../redux/features/book/bookApi';
 import { useAppSelector } from '../redux/hook';
 import { toast } from "react-toastify";
 
 
-export interface AddBookInputs {
+export type AddBookInputs = {
+  _id: string;
   title: string;
   author: string;
   genre: string;
   publicationDate: string;
   reviews?: string[];
   owner: string;
+  image: string;
+}
+
+export type BookCardProps = {
+  book: AddBookInputs;
+};
+
+export type ICurrentList = {
+  _id: string
+  email: string;
+  isComplete: true | false;
+  book: AddBookInputs;
+};
+
+export type CurrentListCardProps = {
+  currentList: ICurrentList
+}
+export type IWishlist = {
+  _id: string
+  email: string;
+  book: AddBookInputs;
+};
+
+export type WishlistCardProps = {
+  wishlist: IWishlist
 }
 
 const AddBook = () => {
@@ -23,9 +49,9 @@ const AddBook = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm<AddBookInputs>();
 
-  const onSubmit = (data: AddBookInputs) => {
+  const onSubmit: SubmitHandler<AddBookInputs> = (data: AddBookInputs) => {
     const options = {
       data: { title: data.title, author: data.author, genre: data.genre, publicationDate: data.publicationDate, image: data.image, owner: user.email },
     };
@@ -168,11 +194,6 @@ const AddBook = () => {
             className="btn btn-primary w-full mt-4 text-white"
             value="Add Book"
           />
-          {/* <div className="mt-2 text-center">
-            {error && ( // Display the error message if present
-              <span className=" text-red-500 text-sm ">{error}</span>
-            )}
-          </div> */}
         </form>
       </div>
     </div>

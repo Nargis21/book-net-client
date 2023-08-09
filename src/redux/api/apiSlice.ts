@@ -5,7 +5,7 @@ export const api = createApi({
   tagTypes: ["book", "wishlist", "currentList"],
   baseQuery: fetchBaseQuery({
     baseUrl: "https://book-net-server-orcin.vercel.app/api/v1",
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers) => {
       const accessToken = localStorage.getItem("accessToken");
 
       if (accessToken) {

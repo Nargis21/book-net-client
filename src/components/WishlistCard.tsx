@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useDeleteWishlistMutation } from '../redux/features/wishlist/wishlistApi';
+import { WishlistCardProps } from "../pages/AddBook";
 
-const WishlistCard = ({ wishlist }) => {
+const WishlistCard = ({ wishlist }: WishlistCardProps) => {
     const { _id, title, author, genre, image, publicationDate } = wishlist?.book;
     const id = wishlist?._id
     const { user } = useAppSelector(state => state.user)

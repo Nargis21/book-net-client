@@ -2,6 +2,7 @@ import { useGetCurrentListQuery } from "../redux/features/currentList/currentLis
 import CurrentListCard from '../components/CurrentListCard'
 import Loading from "../utils/Loading";
 import { Link } from "react-router-dom";
+import { ICurrentList } from "./AddBook";
 
 const CurrentList = () => {
     const { data, isLoading } = useGetCurrentListQuery(undefined)
@@ -17,7 +18,7 @@ const CurrentList = () => {
                 </div>
             ) :
                 <div className=" py-10 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-10 lg:pl-10 bg-gray-200 ">
-                    {data?.data?.map((currentList) => (
+                    {data?.data?.map((currentList: ICurrentList) => (
                         <CurrentListCard
                             key={currentList?._id}
                             currentList={currentList}

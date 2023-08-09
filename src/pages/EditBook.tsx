@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEditBookMutation, useSingleBookQuery } from '../redux/features/book/bookApi';
 import { useAppSelector } from '../redux/hook';
 import { toast } from "react-toastify";
 import Loading from "../utils/Loading";
 import { useNavigate, useParams } from 'react-router-dom';
+import { AddBookInputs } from './AddBook';
 
-
-interface AddBookInputs {
-    title: string;
-    author: string;
-    genre: string;
-    publicationDate: string;
-    reviews?: string[];
-    owner: string;
-}
 
 const EditBook = () => {
     const navigate = useNavigate()
@@ -23,18 +15,18 @@ const EditBook = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const { _id, title, author, genre, image, publicationDate, reviews } = books?.data;
+    const { title, author, genre, image, publicationDate } = books?.data;
     const { user } = useAppSelector(state => state.user)
-    const [editBook, { isSuccess, data }] = useEditBookMutation()
+    const [editBook, { data }] = useEditBookMutation()
 
     const {
         register,
         formState: { errors },
         handleSubmit,
         reset,
-    } = useForm();
+    } = useForm<AddBookInputs>();
 
-    const onSubmit = (data: AddBookInputs) => {
+    const onSubmit: SubmitHandler<AddBookInputs> = (data: AddBookInputs) => {
         const options = {
             id: id,
             data: { title: data.title, author: data.author, genre: data.genre, publicationDate: data.publicationDate, image: data.image, owner: user.email },
@@ -48,7 +40,7 @@ const EditBook = () => {
             toast.success(`Book updated successfully!`);
             navigate(`/bookDetails/${id}`)
         }
-    }, [data, reset])
+    }, [data, reset, id])
 
 
     return (

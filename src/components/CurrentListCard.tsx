@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useDeleteCurrentListMutation, useUpdateStatusMutation } from "../redux/features/currentList/currentListApi";
+import { CurrentListCardProps } from "../pages/AddBook";
 
-const CurrentListCard = ({ currentList }) => {
+const CurrentListCard = ({ currentList }: CurrentListCardProps) => {
     const { _id, title, author, genre, image, publicationDate } = currentList?.book;
     const id = currentList?._id
     const { user } = useAppSelector(state => state.user)
     const [deleteCurrentList,] = useDeleteCurrentListMutation()
-    const [updateStatus,] = useUpdateStatusMutation()
+    const [updateStatus] = useUpdateStatusMutation()
     const options = {
         id: id
     }

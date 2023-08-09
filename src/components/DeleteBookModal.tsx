@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDeleteBookMutation } from '../redux/features/book/bookApi';
 import { useAppSelector } from '../redux/hook';
 import { useNavigate } from 'react-router-dom';

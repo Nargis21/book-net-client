@@ -118,7 +118,7 @@ const Books = () => {
                 </div>
             </div>
             <div className=" py-10 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-10 lg:pl-10  bg-gray-200">
-                {filteredBooksByGenreAndYear.map((book) => (
+                {filteredBooksByGenreAndYear.map((book: AddBookInputs) => (
                     <BookCard
                         key={book._id}
                         book={book}

@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useAddWishlistMutation } from "../redux/features/wishlist/wishlistApi";
 import { toast } from "react-toastify";
 import { useAddCurrentListMutation } from '../redux/features/currentList/currentListApi';
+import { BookCardProps } from '../pages/AddBook';
 
-const BookCard = ({ book }) => {
-
+const BookCard = ({ book }: BookCardProps) => {
+    const navigate = useNavigate();
     const { _id, title, author, genre, image, publicationDate } = book;
-    const { user } = useAppSelector(state => state.user)
+    const { user, isLoading } = useAppSelector(state => state.user)
     const [addWishlist, { data: wishlistData }] = useAddWishlistMutation()
     const [addCurrentList, { data: currentListData }] = useAddCurrentListMutation()
 
@@ -19,9 +20,20 @@ const BookCard = ({ book }) => {
         }
     }
     const handleWishlist = () => {
+        if (!user.email && !isLoading && !localStorage.getItem('accessToken')) {
+            navigate('/login')
+            toast.warn('Please login to add wishlist')
+            return
+        }
+
         addWishlist(options)
     }
     const handleCurrentList = () => {
+        if (!user.email && !isLoading && !localStorage.getItem('accessToken')) {
+            navigate('/login')
+            toast.warn('Please login to add current list')
+            return
+        }
         addCurrentList(options)
     }
 
@@ -54,10 +66,10 @@ const BookCard = ({ book }) => {
                         </Link>
                     </div>
                     <div className='flex gap-2'>
-                        <button onClick={handleWishlist} className='btn btn-primary btn-sm' disabled={!user.email}>
+                        <button onClick={handleWishlist} className='btn btn-primary btn-sm' >
                             Add To Wishlist
                         </button>
-                        <button onClick={handleCurrentList} className='btn btn-primary btn-sm' disabled={!user.email}>
+                        <button onClick={handleCurrentList} className='btn btn-primary btn-sm' >
                             Add To Current List
                         </button>
                     </div>

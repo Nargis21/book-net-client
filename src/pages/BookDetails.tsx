@@ -37,7 +37,7 @@ const BookDetails = () => {
                                 <Link to={`/bookEdit/${_id}`}>
                                     <button className="btn btn-sm btn-primary mr-2" disabled={user.email !== owner}>Edit</button>
                                 </Link>
-                                <label onClick={() => dispatch(setDeleteConfirm(_id))} className='btn btn-sm bg-red-300 ' for="delete-book-modal">
+                                <label onClick={() => dispatch(setDeleteConfirm(_id))} className='btn btn-sm bg-red-300 ' htmlFor="delete-book-modal">
                                     Delete
                                 </label>
                             </div>

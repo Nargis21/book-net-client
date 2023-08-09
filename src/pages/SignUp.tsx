@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hook';
@@ -12,13 +12,13 @@ interface SignupFormInputs {
 }
 
 const SignUp = () => {
-    const { user, isLoading, isError, error } = useAppSelector((state) => state.user)
+    const { user, isLoading, error } = useAppSelector((state) => state.user)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location?.state?.from?.pathname || '/';
 
     const dispatch = useAppDispatch()
-    const [signup, { isSuccess, data }] = useSignupMutation()
+    const [signup, { data }] = useSignupMutation()
 
     const {
         register,
@@ -43,15 +43,6 @@ const SignUp = () => {
             navigate(from, { replace: true })
         }
     }, [user.email, isLoading, from, navigate])
-
-    // useEffect(() => {
-    //     if (token) {
-    //         navigate('/dashboard')
-    //     }
-    // }, [token, navigate])
-    // if (user || googleUser) {
-    //     navigate('/home')
-    // }
 
     return (
         <div className="flex lg:h-screen justify-center items-center bg-gray-200">
@@ -136,6 +127,12 @@ const SignUp = () => {
                         />
 
                     </form>
+                    <p className="text-sm pt-2 font-semibold">
+                        Already have an account?
+                        <Link className="text-blue-500 underline ml-1" to="/login">
+                            Please Login
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { loginUser } from '../redux/features/user/userSlice';
-import Loading from '../utils/Loading';
 import { useLoginMutation } from '../redux/features/user/userApi';
 
 
@@ -13,13 +12,13 @@ interface LoginFormInputs {
 }
 
 const Login = () => {
-  const { user, isLoading, isError, error } = useAppSelector((state) => state.user)
+  const { user, isLoading, error } = useAppSelector((state) => state.user)
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state?.from?.pathname || '/';
 
   const dispatch = useAppDispatch()
-  const [login, { isSuccess, data }] = useLoginMutation()
+  const [login, { data }] = useLoginMutation()
 
 
   const {
@@ -45,14 +44,6 @@ const Login = () => {
     }
   }, [user.email, isLoading, from, navigate])
 
-  // useEffect(() => {
-  //     if (token) {
-  //         navigate('/dashboard')
-  //     }
-  // }, [token, navigate])
-  // if (user || googleUser) {
-  //     navigate('/home')
-  // }
 
   return (
     <div className="flex lg:h-screen justify-center items-center  bg-gray-200">
@@ -137,6 +128,12 @@ const Login = () => {
             />
 
           </form>
+          <p className="text-sm pt-2 font-semibold">
+            New to Book Net?{" "}
+            <Link className="text-blue-500 underline" to="/signup">
+              Create new account
+            </Link>
+          </p>
         </div>
       </div>
     </div>

@@ -1,23 +1,38 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAddCommentMutation } from '../redux/features/book/bookApi';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppSelector } from '../redux/hook';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
+
 type AddCommentInput = {
     comment: string
 }
 
-const Review = ({ id, reviews }) => {
-    const { user } = useAppSelector(state => state.user)
-    const [addComment, { data }] = useAddCommentMutation()
+type ReviewProps = {
+    id: string | undefined;
+    reviews: Array<string>
+}
 
+const Review = ({ id, reviews }: ReviewProps) => {
+    const { user, isLoading } = useAppSelector(state => state.user)
+    const [addComment, { data }] = useAddCommentMutation()
+    const navigate = useNavigate();
     const {
         register,
         formState: { errors },
         handleSubmit,
         reset,
-    } = useForm();
+    } = useForm<AddCommentInput>();
 
-    const onSubmit = (data: AddCommentInput) => {
+    const onSubmit: SubmitHandler<AddCommentInput> = (data: AddCommentInput) => {
+        if (!user.email && !isLoading && !localStorage.getItem('accessToken')) {
+            navigate('/login')
+            toast.warn('Please login to post a comment')
+            return
+        }
+
         const options = {
             id: id,
             data: { comment: data.comment },
@@ -38,7 +53,7 @@ const Review = ({ id, reviews }) => {
                 <div className="form-control w-full">
                     <textarea
                         placeholder="Your Comment"
-                        className=" textarea textarea-bordered textarea-xs w-full"
+                        className=" textarea textarea-bordered textarea-xs w-full text-sm"
                         {...register("comment", {
                             required: {
                                 value: true,
@@ -55,7 +70,6 @@ const Review = ({ id, reviews }) => {
                     </label>
                 </div>
                 <input
-                    disabled={!user.email}
                     type="submit"
                     className="btn btn-primary text-white"
                     value="Send"

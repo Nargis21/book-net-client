@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import WishlistCard from "../components/WishlistCard";
 import { useGetWishlistQuery } from "../redux/features/wishlist/wishlistApi";
 import Loading from "../utils/Loading";
+import { IWishlist } from "./AddBook";
 
 const Wishlist = () => {
     const { data, isLoading } = useGetWishlistQuery(undefined)
@@ -19,7 +20,7 @@ const Wishlist = () => {
             ) :
                 <div className=" py-10 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-y-10 lg:pl-10 bg-gray-200  justify-center">
 
-                    {data?.data?.map((wishlist) => (
+                    {data?.data?.map((wishlist: IWishlist) => (
                         <WishlistCard
                             key={wishlist._id}
                             wishlist={wishlist}
